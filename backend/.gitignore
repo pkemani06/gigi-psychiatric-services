@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Environment variables (NEVER commit these)
+.env
+.env.local
+.env.production
+
+# Database
+bookings.json
+
+# Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Codeso what do I do no
+.vscode/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+
+# Misc
+.cache/
