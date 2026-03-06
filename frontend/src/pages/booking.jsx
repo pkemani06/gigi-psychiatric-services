@@ -47,7 +47,6 @@ function formatDateShort(d) {
 const TIME_SLOTS = generateSlots();
 
 export default function BookingPage() {
-  const navigate = useNavigate();
   const [weekOffset, setWeekOffset] = useState(0);
   const [selectedDay, setSelectedDay] = useState(null);
   const [booked, setBooked] = useState({});
