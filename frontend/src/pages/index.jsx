@@ -6,10 +6,58 @@ import Footer from '../components/Footer';
 
 const line1 = "Find Peace,";
 const line2 = "Discover Strength";
+
 const businessInfo = {
   phone: "301-886-5868",
   email: "gigipsychiatricservices@gmail.com",
 };
+
+// ── Global styles injected once ───────────────────────────────────────────
+const globalStyles = `
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg:        #f5f3ef;
+    --surface:   #ffffff;
+    --surface-2: #f0ede8;
+    --border:    #e2ddd6;
+    --accent:    #4e7c68;
+    --accent-bg: rgba(78, 124, 104, 0.08);
+    --text:      #1a1916;
+    --text-2:    #5a5650;
+    --text-3:    #9b9590;
+    --sh-lg:     0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+    --sh-xl:     0 12px 48px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  .gigi-fade-1 { animation: fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) both; }
+  .gigi-fade-2 { animation: fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.1s both; }
+  .gigi-fade-3 { animation: fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.2s both; }
+  .gigi-fade-4 { animation: fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.3s both; }
+  .gigi-fade-5 { animation: fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.4s both; }
+
+  .cursor-blink { animation: blink 0.9s step-end infinite; }
+
+  .gigi-btn-primary:hover  { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(78,124,104,0.35) !important; }
+  .gigi-btn-secondary:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+  .gigi-contact-link:hover  { color: var(--accent) !important; }
+`;
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -44,58 +92,292 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-cyan-50">
-      <Navbar />
+    <>
+      <style>{globalStyles}</style>
 
-      <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotate(90deg)', width: '100vh', height: '100vw', zIndex: 0, pointerEvents: 'none' }}>
-          <img src="/images/backdrop-for-hero.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.45 }} />
-        </div>
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(219,234,254,0.6) 50%, rgba(15,42,90,0.25) 100%)', zIndex: 1 }} />
+      <div style={{ minHeight: "100vh", background: "var(--bg)" }}>
+        <Navbar />
 
-        <div className="relative max-w-7xl mx-auto" style={{ zIndex: 2 }}>
-          <div className="w-full">
-            <div className="space-y-6 animate-fade-in w-full">
-              <div className="inline-block">
-                <span className="bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-semibold">Virtual Visits Only • Telehealth Services</span>
-              </div>
-              <h1 className="font-bold text-slate-900 leading-tight w-full">
-                <span className="block w-full text-slate-900" style={{ fontSize: 'clamp(2.5rem, 6.5vw, 6rem)', minHeight: '1.2em' }}>
-                  {typed1}<span className="typewriter-cursor" style={{ opacity: activeLine === 1 ? 1 : 0 }}>|</span>
+        {/* ── Hero Section ── */}
+        <section
+          id="home"
+          style={{
+            position: "relative",
+            paddingTop: 120,
+            paddingBottom: 80,
+            paddingLeft: 24,
+            paddingRight: 24,
+            overflow: "hidden",
+          }}
+        >
+          {/* Background image */}
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%) rotate(90deg)",
+              width: "100vh",
+              height: "100vw",
+              zIndex: 0,
+              pointerEvents: "none",
+            }}
+          >
+            <img
+              src="/images/backdrop-for-hero.png"
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: 0.15,
+              }}
+            />
+          </div>
+
+          {/* Warm gradient overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(135deg, rgba(245,243,239,0.92) 0%, rgba(240,237,232,0.80) 50%, rgba(78,124,104,0.07) 100%)",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Decorative glow circle top-right */}
+          <div
+            style={{
+              position: "absolute",
+              top: -140,
+              right: -140,
+              width: 500,
+              height: 500,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(78,124,104,0.07) 0%, transparent 70%)",
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Content */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 2,
+              maxWidth: 1200,
+              margin: "0 auto",
+            }}
+          >
+            {/* Eyebrow label */}
+            <div className="gigi-fade-1" style={{ marginBottom: 20 }}>
+              <span
+                style={{
+                  fontFamily: "DM Mono, monospace",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "var(--accent)",
+                  background: "var(--accent-bg)",
+                  border: "1px solid rgba(78,124,104,0.2)",
+                  padding: "6px 16px",
+                  borderRadius: 999,
+                  display: "inline-block",
+                }}
+              >
+                Virtual Visits Only · Telehealth Services
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h1
+              className="gigi-fade-2"
+              style={{
+                fontFamily: "Lora, Georgia, serif",
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.08,
+                margin: "0 0 24px",
+              }}
+            >
+              {/* Line 1 */}
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "clamp(2.8rem, 6.5vw, 6rem)",
+                  minHeight: "1.15em",
+                  color: "var(--text)",
+                }}
+              >
+                {typed1}
+                <span
+                  className={activeLine === 1 ? "cursor-blink" : ""}
+                  style={{
+                    opacity: activeLine === 1 ? 1 : 0,
+                    color: "var(--accent)",
+                    fontWeight: 300,
+                  }}
+                >
+                  |
                 </span>
-                <span className="block w-full bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent" style={{ fontSize: 'clamp(2.5rem, 6.5vw, 6rem)', minHeight: '1.2em' }}>
-                  {typed2}<span className="typewriter-cursor" style={{ color: '#0d9488', opacity: activeLine === 2 ? 1 : 0 }}>|</span>
+              </span>
+
+              {/* Line 2 — accent colored */}
+              <span
+                style={{
+                  display: "block",
+                  fontSize: "clamp(2.8rem, 6.5vw, 6rem)",
+                  minHeight: "1.15em",
+                  color: "var(--accent)",
+                }}
+              >
+                {typed2}
+                <span
+                  className={activeLine === 2 ? "cursor-blink" : ""}
+                  style={{
+                    opacity: activeLine === 2 ? 1 : 0,
+                    color: "var(--accent)",
+                    fontWeight: 300,
+                  }}
+                >
+                  |
                 </span>
-              </h1>
-              <p className="text-xl text-slate-600 leading-relaxed">
-                We provide comprehensive virtual psychiatric care for adolescents, adults and geriatric patients.
-                Your mental health matters to us at Gigi Psychiatric Services. Experience professional,
-                compassionate care from the comfort of your home through our secure telehealth platform.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button onClick={() => navigate('/contact')} className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 text-center">
-                  Schedule Consultation
-                </button>
-                <button onClick={() => navigate('/services')} className="border-2 border-teal-600 text-teal-700 px-8 py-4 rounded-full font-semibold hover:bg-teal-50 transition-all duration-300 text-center">
-                  Explore Services
-                </button>
-              </div>
-              <div className="flex flex-wrap gap-6 pt-6 border-t border-slate-200">
-                <a href={`tel:${businessInfo.phone}`} className="flex items-center gap-2 text-slate-600 hover:text-teal-600 transition-colors">
-                  <Phone size={18} className="text-teal-600" />
-                  <span className="font-medium">{businessInfo.phone}</span>
-                </a>
-                <a href={`mailto:${businessInfo.email}`} className="flex items-center gap-2 text-slate-600 hover:text-teal-600 transition-colors">
-                  <Mail size={18} className="text-teal-600" />
-                  <span className="font-medium">{businessInfo.email}</span>
-                </a>
-              </div>
+              </span>
+            </h1>
+
+            {/* Body copy */}
+            <p
+              className="gigi-fade-3"
+              style={{
+                fontFamily: "DM Sans, sans-serif",
+                fontSize: 18,
+                color: "var(--text-2)",
+                lineHeight: 1.75,
+                maxWidth: 620,
+                margin: "0 0 36px",
+              }}
+            >
+              We provide comprehensive virtual psychiatric care for adolescents,
+              adults and geriatric patients. Your mental health matters to us at
+              Gigi Psychiatric Services. Experience professional, compassionate
+              care from the comfort of your home through our secure telehealth
+              platform.
+            </p>
+
+            {/* CTA buttons */}
+            <div
+              className="gigi-fade-4"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 12,
+                marginBottom: 40,
+              }}
+            >
+              <button
+                onClick={() => navigate('/contact')}
+                className="gigi-btn-primary"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "14px 28px",
+                  borderRadius: 14,
+                  border: "none",
+                  background: "var(--accent)",
+                  color: "#fff",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  fontFamily: "DM Sans, sans-serif",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 16px rgba(78,124,104,0.28)",
+                  transition: "all 0.18s",
+                }}
+              >
+                Schedule Consultation
+              </button>
+
+              <button
+                onClick={() => navigate('/services')}
+                className="gigi-btn-secondary"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "14px 28px",
+                  borderRadius: 14,
+                  border: "1px solid var(--border)",
+                  background: "var(--surface)",
+                  color: "var(--text)",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  fontFamily: "DM Sans, sans-serif",
+                  cursor: "pointer",
+                  boxShadow: "var(--sh-lg)",
+                  transition: "all 0.18s",
+                }}
+              >
+                Explore Services
+              </button>
+            </div>
+
+            {/* Contact strip */}
+            <div
+              className="gigi-fade-5"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 24,
+                paddingTop: 28,
+                borderTop: "1px solid var(--border)",
+              }}
+            >
+              <a
+                href={`tel:${businessInfo.phone}`}
+                className="gigi-contact-link"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  color: "var(--text-2)",
+                  textDecoration: "none",
+                  fontFamily: "DM Sans, sans-serif",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  transition: "color 0.15s",
+                }}
+              >
+                <Phone size={16} style={{ color: "var(--accent)" }} />
+                {businessInfo.phone}
+              </a>
+
+              <a
+                href={`mailto:${businessInfo.email}`}
+                className="gigi-contact-link"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  color: "var(--text-2)",
+                  textDecoration: "none",
+                  fontFamily: "DM Sans, sans-serif",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  transition: "color 0.15s",
+                }}
+              >
+                <Mail size={16} style={{ color: "var(--accent)" }} />
+                {businessInfo.email}
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }
