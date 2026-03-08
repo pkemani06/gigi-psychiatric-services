@@ -16,7 +16,6 @@ export default function AboutPage() {
           overflow: "hidden",
         }}
       >
-        {/* Subtle background glow */}
         <div
           style={{
             position: "absolute",
@@ -33,7 +32,6 @@ export default function AboutPage() {
 
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative" }}>
 
-          {/* Page eyebrow */}
           <div style={{ marginBottom: 48 }}>
             <p
               style={{
@@ -63,7 +61,6 @@ export default function AboutPage() {
             </h1>
           </div>
 
-          {/* Two-column grid */}
           <div
             style={{
               display: "grid",
@@ -109,16 +106,7 @@ export default function AboutPage() {
                 gap: 20,
               }}
             >
-              {/* Bio paragraphs */}
-              <p
-                style={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  lineHeight: 1.8,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 15, color: "var(--text-2)", lineHeight: 1.8, margin: 0 }}>
                 I have over 20 years of nursing background in various health care
                 settings and 3 years as a Psychiatric Nurse Practitioner. I
                 obtained my BSc. in Nursing degree from Chamberlain School of
@@ -131,15 +119,7 @@ export default function AboutPage() {
                 psychological, and social factors influencing emotional well-being.
               </p>
 
-              <p
-                style={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  lineHeight: 1.8,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 15, color: "var(--text-2)", lineHeight: 1.8, margin: 0 }}>
                 At Gigi Psychiatric Services, we make high-quality mental health
                 services accessible from the comfort and privacy of your home. We
                 offer both medication management &amp; therapy in a single
@@ -148,15 +128,7 @@ export default function AboutPage() {
                 faster with a 75% improved chance of recovery.
               </p>
 
-              <p
-                style={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  lineHeight: 1.8,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 15, color: "var(--text-2)", lineHeight: 1.8, margin: 0 }}>
                 We assist patients struggling with depression, anxiety, bipolar
                 disorder, schizophrenia, autism spectrum disorder and other
                 psychiatric issues. I have experience working in an outpatient
@@ -164,15 +136,7 @@ export default function AboutPage() {
                 population.
               </p>
 
-              <p
-                style={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  lineHeight: 1.8,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 15, color: "var(--text-2)", lineHeight: 1.8, margin: 0 }}>
                 I am passionate about supporting clients and families with the
                 tools to understand and manage behaviors, leading more balanced and
                 meaningful lives. My professional interests include medication
@@ -180,7 +144,6 @@ export default function AboutPage() {
                 the best version of themselves.
               </p>
 
-              {/* Attribution */}
               <div
                 style={{
                   paddingTop: 20,
@@ -190,43 +153,17 @@ export default function AboutPage() {
                   gap: 4,
                 }}
               >
-                <p
-                  style={{
-                    fontFamily: "Lora, Georgia, serif",
-                    fontSize: 17,
-                    fontWeight: 700,
-                    color: "var(--text)",
-                    margin: 0,
-                  }}
-                >
+                <p style={{ fontFamily: "Lora, Georgia, serif", fontSize: 17, fontWeight: 700, color: "var(--text)", margin: 0 }}>
                   Gigi, PMHNP-BC
                 </p>
-                <p
-                  style={{
-                    fontFamily: "DM Sans, sans-serif",
-                    fontSize: 13,
-                    color: "var(--text-3)",
-                    margin: 0,
-                  }}
-                >
+                <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 13, color: "var(--text-3)", margin: 0 }}>
                   Psychiatric Nurse Practitioner, PMHNP-BC
                 </p>
-                <p
-                  style={{
-                    fontFamily: "DM Mono, monospace",
-                    fontSize: 11,
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    color: "var(--accent)",
-                    margin: 0,
-                    textTransform: "uppercase",
-                  }}
-                >
+                <p style={{ fontFamily: "DM Mono, monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", color: "var(--accent)", margin: 0, textTransform: "uppercase" }}>
                   Gigi Psychiatric Services, LLC
                 </p>
               </div>
 
-              {/* CTA button */}
               <button
                 onClick={() => navigate('/contact')}
                 style={{
@@ -248,14 +185,12 @@ export default function AboutPage() {
                   marginTop: 4,
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                    "0 8px 24px rgba(78,124,104,0.35)";
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(78,124,104,0.35)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                    "0 4px 16px rgba(78,124,104,0.28)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 4px 16px rgba(78,124,104,0.28)";
                 }}
               >
                 Schedule with Gigi

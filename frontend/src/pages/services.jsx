@@ -34,14 +34,7 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* ── Services Grid ── */}
-      <section
-        style={{
-          padding: "80px 24px",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Decorative glow */}
+      <section style={{ padding: "80px 24px", position: "relative", overflow: "hidden" }}>
         <div
           style={{
             position: "absolute",
@@ -57,57 +50,21 @@ export default function ServicesPage() {
 
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative" }}>
 
-          {/* Section header */}
           <div style={{ marginBottom: 52, textAlign: "center" }}>
-            <p
-              style={{
-                fontFamily: "DM Mono, monospace",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--accent)",
-                marginBottom: 10,
-              }}
-            >
+            <p style={{ fontFamily: "DM Mono, monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 10 }}>
               What We Offer
             </p>
-            <h1
-              style={{
-                fontFamily: "Lora, Georgia, serif",
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                color: "var(--text)",
-                margin: "0 0 14px",
-                lineHeight: 1.1,
-              }}
-            >
+            <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text)", margin: "0 0 14px", lineHeight: 1.1 }}>
               Our{" "}
               <span style={{ color: "var(--accent)" }}>Services</span>
             </h1>
-            <p
-              style={{
-                fontFamily: "DM Sans, sans-serif",
-                fontSize: 17,
-                color: "var(--text-2)",
-                maxWidth: 520,
-                margin: "0 auto",
-                lineHeight: 1.7,
-              }}
-            >
+            <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 17, color: "var(--text-2)", maxWidth: 520, margin: "0 auto", lineHeight: 1.7 }}>
               Comprehensive mental health care designed around your unique needs
             </p>
           </div>
 
           {/* Cards grid */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 20,
-            }}
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {services.map((service, idx) => (
               <div
                 key={idx}
@@ -119,57 +76,25 @@ export default function ServicesPage() {
                   boxShadow: "var(--sh-lg)",
                   cursor: "pointer",
                   transition: "all 0.2s cubic-bezier(0.4,0,0.2,1)",
-                  animationDelay: `${idx * 0.08}s`,
                 }}
                 onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.transform = "translateY(-4px)";
-                  el.style.boxShadow = "var(--sh-xl)";
-                  el.style.borderColor = "rgba(78,124,104,0.3)";
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.boxShadow = "var(--sh-xl)";
+                  e.currentTarget.style.borderColor = "rgba(78,124,104,0.3)";
                 }}
                 onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "var(--sh-lg)";
-                  el.style.borderColor = "var(--border)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "var(--sh-lg)";
+                  e.currentTarget.style.borderColor = "var(--border)";
                 }}
               >
-                {/* Icon */}
-                <div
-                  style={{
-                    fontSize: 40,
-                    marginBottom: 16,
-                    lineHeight: 1,
-                  }}
-                >
+                <div style={{ fontSize: 40, marginBottom: 16, lineHeight: 1 }}>
                   {service.icon}
                 </div>
-
-                {/* Title */}
-                <h3
-                  style={{
-                    fontFamily: "Lora, Georgia, serif",
-                    fontSize: 19,
-                    fontWeight: 700,
-                    color: "var(--text)",
-                    margin: "0 0 10px",
-                    letterSpacing: "-0.01em",
-                    lineHeight: 1.25,
-                  }}
-                >
+                <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: 19, fontWeight: 700, color: "var(--text)", margin: "0 0 10px", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
                   {service.title}
                 </h3>
-
-                {/* Description */}
-                <p
-                  style={{
-                    fontFamily: "DM Sans, sans-serif",
-                    fontSize: 14,
-                    color: "var(--text-2)",
-                    lineHeight: 1.7,
-                    margin: 0,
-                  }}
-                >
+                <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 14, color: "var(--text-2)", lineHeight: 1.7, margin: 0 }}>
                   {service.description}
                 </p>
               </div>
@@ -181,71 +106,21 @@ export default function ServicesPage() {
       {/* ── Areas of Expertise ── */}
       <section style={{ padding: "0 24px 80px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div
-            style={{
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: 24,
-              boxShadow: "var(--sh-xl)",
-              overflow: "hidden",
-            }}
-          >
-            {/* Card header */}
-            <div
-              style={{
-                padding: "36px 48px 28px",
-                borderBottom: "1px solid var(--border)",
-                textAlign: "center",
-                background: "var(--surface-2)",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "DM Mono, monospace",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "var(--accent)",
-                  marginBottom: 10,
-                }}
-              >
+          <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 24, boxShadow: "var(--sh-xl)", overflow: "hidden" }}>
+
+            <div style={{ padding: "36px 48px 28px", borderBottom: "1px solid var(--border)", textAlign: "center", background: "var(--surface-2)" }}>
+              <p style={{ fontFamily: "DM Mono, monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 10 }}>
                 Specializations
               </p>
-              <h2
-                style={{
-                  fontFamily: "Lora, Georgia, serif",
-                  fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-                  fontWeight: 700,
-                  letterSpacing: "-0.02em",
-                  color: "var(--text)",
-                  margin: "0 0 10px",
-                  lineHeight: 1.15,
-                }}
-              >
+              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text)", margin: "0 0 10px", lineHeight: 1.15 }}>
                 Areas of Expertise
               </h2>
-              <p
-                style={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 15, color: "var(--text-2)", margin: 0 }}>
                 We specialize in treating a wide range of mental health conditions
               </p>
             </div>
 
-            {/* Specialization tags */}
-            <div
-              style={{
-                padding: "36px 48px",
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: 12,
-              }}
-            >
+            <div style={{ padding: "36px 48px", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
               {specializations.map((spec, idx) => (
                 <div
                   key={idx}
@@ -259,26 +134,15 @@ export default function ServicesPage() {
                     cursor: "default",
                   }}
                   onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.background = "rgba(78,124,104,0.08)";
-                    el.style.borderColor = "rgba(78,124,104,0.25)";
+                    e.currentTarget.style.background = "rgba(78,124,104,0.08)";
+                    e.currentTarget.style.borderColor = "rgba(78,124,104,0.25)";
                   }}
                   onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.background = "var(--surface-2)";
-                    el.style.borderColor = "var(--border)";
+                    e.currentTarget.style.background = "var(--surface-2)";
+                    e.currentTarget.style.borderColor = "var(--border)";
                   }}
                 >
-                  <p
-                    style={{
-                      fontFamily: "DM Sans, sans-serif",
-                      fontSize: 14,
-                      fontWeight: 600,
-                      color: "var(--text)",
-                      margin: 0,
-                      lineHeight: 1.4,
-                    }}
-                  >
+                  <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 14, fontWeight: 600, color: "var(--text)", margin: 0, lineHeight: 1.4 }}>
                     {spec}
                   </p>
                 </div>
@@ -289,12 +153,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── CTA ── */}
-      <div
-        style={{
-          padding: "0 24px 80px",
-          textAlign: "center",
-        }}
-      >
+      <div style={{ padding: "0 24px 80px", textAlign: "center" }}>
         <button
           onClick={() => navigate('/contact')}
           style={{
@@ -314,14 +173,12 @@ export default function ServicesPage() {
             transition: "all 0.18s",
           }}
           onMouseEnter={(e) => {
-            const el = e.currentTarget as HTMLButtonElement;
-            el.style.transform = "translateY(-2px)";
-            el.style.boxShadow = "0 8px 28px rgba(78,124,104,0.35)";
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 8px 28px rgba(78,124,104,0.35)";
           }}
           onMouseLeave={(e) => {
-            const el = e.currentTarget as HTMLButtonElement;
-            el.style.transform = "translateY(0)";
-            el.style.boxShadow = "0 4px 16px rgba(78,124,104,0.28)";
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 16px rgba(78,124,104,0.28)";
           }}
         >
           Book an Appointment
