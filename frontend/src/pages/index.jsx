@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Mail, ArrowRight, Sparkles } from 'lucide-react';
+import { Phone, Mail, ArrowRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
