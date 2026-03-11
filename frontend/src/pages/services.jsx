@@ -91,6 +91,92 @@ const pageStyles = `
   }
   .svc-card:hover::after { opacity: 1; }
 
+  /* Condition image cards */
+  .condition-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: linear-gradient(145deg, var(--cream) 0%, var(--warm) 100%);
+    border: 1px solid var(--warm);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.09), 0 4px 16px rgba(0,0,0,0.05);
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .condition-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 64px rgba(0,0,0,0.13), 0 8px 24px rgba(92,126,106,0.12);
+  }
+  .condition-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .condition-card:hover img {
+    transform: scale(1.04);
+  }
+  .condition-card .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 35%, rgba(28,24,20,0.75) 100%);
+    transition: opacity 0.3s;
+  }
+  .condition-card .card-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 24px 28px;
+  }
+  .condition-card .card-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: rgba(196,168,130,0.25);
+    border: 1px solid rgba(196,168,130,0.4);
+    border-radius: 999px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 8px;
+  }
+  .condition-card .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0;
+  }
+  /* Placeholder when no image */
+  .condition-card .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, var(--cream), var(--warm));
+    gap: 12px;
+  }
+  .condition-card .img-placeholder .placeholder-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(92,126,106,0.1);
+    border: 1px dashed rgba(92,126,106,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .condition-card .img-placeholder .placeholder-text {
+    font-family: 'Figtree', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
   /* Spec pills */
   .spec-pill {
     display: inline-flex; align-items: center; justify-content: center;
@@ -172,10 +258,12 @@ const pageStyles = `
   @media (max-width: 900px) {
     .svc-grid { grid-template-columns: repeat(2,1fr) !important; }
     .spec-grid { grid-template-columns: repeat(2,1fr) !important; }
+    .condition-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
   @media (max-width: 600px) {
     .svc-grid { grid-template-columns: 1fr !important; }
     .spec-grid { grid-template-columns: 1fr !important; }
+    .condition-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
 `;
 
@@ -186,6 +274,37 @@ const services = [
   { title: "Supportive Therapy",      description: "Compassionate therapeutic support to help you navigate life's challenges.",                     icon: "💚" },
   { title: "Virtual Visits",          description: "Convenient, secure telehealth appointments from the comfort of your home.",                     icon: "💻" },
   { title: "Adolescent & Adult Care", description: "Specialized treatment for both adolescents and adults at every life stage.",                    icon: "👥" },
+];
+
+const conditions = [
+  {
+    title: "Anxiety",
+    tag: "We Treat",
+    icon: "🌊",
+    image: "/images/anxiety.png",
+    description: "Generalized anxiety, panic disorder, social anxiety & more",
+  },
+  {
+    title: "Depression",
+    tag: "We Treat",
+    icon: "🌧",
+    image: "/images/depression.png",
+    description: "Major depressive disorder, persistent depressive disorder & more",
+  },
+  {
+    title: "ADHD",
+    tag: "We Treat",
+    icon: "⚡",
+    image: "/images/adhd.png",
+    description: "Attention deficit hyperactivity disorder across all age groups",
+  },
+  {
+    title: "Bipolar Disorder",
+    tag: "We Treat",
+    icon: "🔄",
+    image: "/images/bipolar.png",
+    description: "Bipolar I, Bipolar II, and cyclothymic disorder",
+  },
 ];
 
 const specializations = [
@@ -270,7 +389,6 @@ export default function ServicesPage() {
             }}>
               {services.map((svc, i) => (
                 <div key={i} className="svc-card">
-                  {/* Icon bubble */}
                   <div style={{
                     width: 56, height: 56,
                     borderRadius: 16,
@@ -282,7 +400,6 @@ export default function ServicesPage() {
                   }}>
                     {svc.icon}
                   </div>
-
                   <h3 style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontSize: 22, fontWeight: 500,
@@ -291,7 +408,6 @@ export default function ServicesPage() {
                   }}>
                     {svc.title}
                   </h3>
-
                   <p style={{
                     fontFamily: "'Figtree', sans-serif",
                     fontSize: 14, fontWeight: 300,
@@ -299,8 +415,6 @@ export default function ServicesPage() {
                   }}>
                     {svc.description}
                   </p>
-
-                  {/* Corner accent */}
                   <div style={{
                     position: "absolute", bottom: -16, right: -16,
                     width: 80, height: 80, borderRadius: "50%",
@@ -313,10 +427,108 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        {/* ═══ CONDITIONS WE TREAT — IMAGE GRID ═══ */}
+        <section style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px 96px" }}>
+
+            {/* Section header */}
+            <div style={{ marginBottom: 48 }}>
+              <div style={{ marginBottom: 14 }}>
+                <span className="section-eyebrow">Conditions We Treat</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                  fontSize: "clamp(2rem, 4vw, 3.6rem)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.01em",
+                  color: "var(--text)",
+                  margin: 0,
+                }}>
+                  Focused care for the{" "}
+                  <em style={{ fontStyle: "italic", color: "var(--sage)", fontWeight: 400 }}>conditions<br />that matter most</em>
+                </h2>
+                <p style={{
+                  fontFamily: "'Figtree', sans-serif",
+                  fontSize: 14, fontWeight: 300,
+                  color: "var(--text-3)", lineHeight: 1.75,
+                  maxWidth: 340, margin: 0,
+                }}>
+                  Our team specializes in evidence-based treatment for these and many more mental health conditions.
+                </p>
+              </div>
+            </div>
+
+            {/* Condition image cards */}
+            <div className="condition-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 16,
+            }}>
+              {conditions.map((condition, i) => (
+                <div key={i} className="condition-card">
+
+                  {/* Image with fallback placeholder */}
+                  <img
+                    src={condition.image}
+                    alt={condition.title}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+
+                  {/* Placeholder shown when image missing */}
+                  <div className="img-placeholder" style={{ display: 'none', position: 'absolute', inset: 0 }}>
+                    <div className="placeholder-icon">{condition.icon}</div>
+                    <span className="placeholder-text">Add {condition.title} image</span>
+                    <span style={{
+                      fontFamily: "'Figtree', sans-serif",
+                      fontSize: 10, color: "var(--text-3)",
+                      letterSpacing: "0.06em",
+                    }}>
+                      /images/{condition.title.toLowerCase().replace(' ', '')}.png
+                    </span>
+                  </div>
+
+                  {/* Gradient overlay */}
+                  <div className="card-overlay" />
+
+                  {/* Label */}
+                  <div className="card-label">
+                    <div className="card-tag">
+                      <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--gold)", flexShrink: 0 }} />
+                      {condition.tag}
+                    </div>
+                    <p className="card-title">{condition.title}</p>
+                    <p style={{
+                      fontFamily: "'Figtree', sans-serif",
+                      fontSize: 12, fontWeight: 300,
+                      color: "rgba(255,255,255,0.65)",
+                      lineHeight: 1.5,
+                      margin: "6px 0 0",
+                    }}>
+                      {condition.description}
+                    </p>
+                  </div>
+
+                  {/* Decorative corner ring */}
+                  <div style={{
+                    position: "absolute", top: 16, right: 16,
+                    width: 40, height: 40, borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    pointerEvents: "none",
+                  }} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ═══ SPECIALIZATIONS DARK BAND ═══ */}
         <section className="dark-band" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: 1280, margin: "0 auto", padding: "72px 32px 72px" }}>
-
             <div style={{ textAlign: "center", marginBottom: 48 }}>
               <div style={{ marginBottom: 14 }}>
                 <span className="section-eyebrow" style={{ color: "rgba(255,255,255,0.45)" }}>
@@ -341,7 +553,6 @@ export default function ServicesPage() {
                 We specialize in treating a wide range of mental health conditions
               </p>
             </div>
-
             <div className="spec-grid" style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
@@ -377,8 +588,6 @@ export default function ServicesPage() {
               overflow: "hidden",
               boxShadow: "0 16px 48px rgba(0,0,0,0.06)",
             }}>
-
-              {/* Large decorative quote mark */}
               <div style={{
                 position: "absolute", top: -20, right: 40,
                 fontFamily: "'Cormorant Garamond', serif",
@@ -388,7 +597,6 @@ export default function ServicesPage() {
               }}>
                 "
               </div>
-
               <div style={{ maxWidth: 580, position: "relative" }}>
                 <div style={{ marginBottom: 16 }}>
                   <span className="section-eyebrow">Ready to Begin?</span>
@@ -412,13 +620,10 @@ export default function ServicesPage() {
                   better mental health — from the comfort of your home.
                 </p>
               </div>
-
               <button className="svc-btn" onClick={() => navigate('/contact')}>
                 Book an Appointment
                 <ArrowRight size={16} className="btn-arrow" />
               </button>
-
-              {/* Corner orb */}
               <div style={{
                 position: "absolute", bottom: -40, right: -40,
                 width: 200, height: 200, borderRadius: "50%",
