@@ -471,7 +471,7 @@ export default function HomePage() {
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#5cb85c", flexShrink: 0, boxShadow: "0 0 0 3px rgba(92,184,92,0.2)" }} />
-                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 500, color: "var(--text)" }}>All Ages Welcome</span>
+                    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 500, color: "var(--text)" }}>Ages 13+ Welcome</span>
                   </div>
                 </div>
 
