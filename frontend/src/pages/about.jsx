@@ -428,7 +428,7 @@ export default function AboutPage() {
                       fontSize: 20, fontWeight: 500,
                       color: "var(--text)", margin: 0,
                     }}>
-                      Giesel Kemani, PMHNP-BC
+                      Giesel Kemani APRN, PMHNP-BC
                     </p>
                     <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 13, color: "var(--text-3)", margin: 0 }}>
                       Psychiatric Nurse Practitioner, PMHNP-BC
@@ -493,7 +493,7 @@ export default function AboutPage() {
                 letterSpacing: "0.14em", textTransform: "uppercase",
                 color: "rgba(255,255,255,0.5)",
               }}>
-                Giesel Kemani, PMHNP-BC
+                 Giesel Kemani APRN, PMHNP-BC
               </span>
               <div style={{ width: 32, height: 1, background: "var(--gold)" }} />
             </div>
