@@ -226,8 +226,8 @@ export default function ContactPage() {
         <Navbar />
 
         {/* ═══ HERO HEADER ═══ */}
-        <section style={{ position: "relative", zIndex: 1, paddingTop: 100 }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "60px 32px 72px" }}>
+        <section style={{ position: "relative", zIndex: 1, paddingTop: 20 }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 32px 72px" }}>
 
             <div className="con-r1" style={{ marginBottom: 16 }}>
               <span className="section-eyebrow">Reach Out</span>

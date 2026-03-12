@@ -258,7 +258,7 @@ export default function AboutPage() {
                       fontSize: 24, fontWeight: 500,
                       color: "#fff", margin: "0 0 4px", lineHeight: 1.2,
                     }}>
-                      Giesel Kemani, PMHNP-BC
+                      Giesel Kemani APRN, PMHNP-BC
                     </p>
                     <p style={{
                       fontFamily: "'Figtree', sans-serif",
