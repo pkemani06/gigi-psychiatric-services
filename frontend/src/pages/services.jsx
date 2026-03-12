@@ -251,6 +251,35 @@ const pageStyles = `
     animation: shimmer 4s linear 1s infinite;
   }
 
+  /* ── Insurance ticker ── */
+  @keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-track {
+    display: flex; gap: 0;
+    animation: tickerScroll 32s linear infinite;
+    width: max-content;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 0 28px; flex-shrink: 0;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .ticker-logo-box {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+    backdrop-filter: blur(8px);
+  }
+  .ticker-name {
+    font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,0.9); white-space: nowrap; letter-spacing: 0.01em;
+  }
+
   .dark-band { background: var(--sage-dk); position: relative; overflow: hidden; }
   .dark-band::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 40px; background: var(--ivory); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0); }
   .dark-band::after  { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 40px; background: var(--ivory); clip-path: polygon(0 100%, 100% 0, 100% 100%); }
@@ -525,8 +554,8 @@ export default function ServicesPage() {
         <Navbar />
 
         {/* ═══ HERO ═══ */}
-        <section style={{ position: "relative", zIndex: 1, paddingTop: 20 }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 32px 80px" }}>
+        <section style={{ position: "relative", zIndex: 1, paddingTop: 100 }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "60px 32px 80px" }}>
             <div className="svc-r1" style={{ marginBottom: 16 }}>
               <span className="section-eyebrow">What We Offer</span>
             </div>
@@ -538,6 +567,41 @@ export default function ServicesPage() {
             <p className="svc-r3" style={{ fontFamily: "'Figtree', sans-serif", fontSize: 16, fontWeight: 300, color: "var(--text-2)", lineHeight: 1.8, maxWidth: 560 }}>
               From evaluation to ongoing therapy — we provide a full spectrum of virtual mental health services delivered with warmth and clinical excellence.
             </p>
+          </div>
+        </section>
+
+        {/* ═══ INSURANCE TICKER ═══ */}
+        <section style={{ position: "relative", zIndex: 1, marginBottom: 56 }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px 16px" }}>
+            <span className="section-eyebrow">Insurances Accepted</span>
+          </div>
+          <div style={{ background: "linear-gradient(135deg, var(--sage-dk) 0%, #4a7060 50%, var(--sage) 100%)", overflow: "hidden", padding: "18px 0", position: "relative", boxShadow: "0 8px 32px rgba(61,92,74,0.28), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.1)" }}>
+            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(90deg, #3d5c4a, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(270deg, #5c7e6a, transparent)", zIndex: 2, pointerEvents: "none" }} />
+            <div style={{ overflow: "hidden" }}>
+              <div className="ticker-track">
+                {[...Array(2)].map((_, pass) =>
+                  [
+                    { name: "Aetna Health Plans", icon: "🏥" },
+                    { name: "Blue Cross Blue Shield MD · Carefirst", icon: "💙" },
+                    { name: "Cigna", icon: "🩺" },
+                    { name: "GEHA", icon: "🏛️" },
+                    { name: "Humana Veterans Healthcare Services", icon: "⭐" },
+                    { name: "Maryland Public Behavioral Health", icon: "🌿" },
+                    { name: "Medicaid of Maryland", icon: "🛡️" },
+                    { name: "Medicare DC Metro Area", icon: "🏙️" },
+                    { name: "Oxford Health Plan", icon: "📋" },
+                    { name: "Tricare East", icon: "🎖️" },
+                    { name: "United HealthCare of All States", icon: "🇺🇸" },
+                  ].map((ins, i) => (
+                    <div key={`${pass}-${i}`} className="ticker-item">
+                      <div className="ticker-logo-box">{ins.icon}</div>
+                      <span className="ticker-name">{ins.name}</span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
           </div>
         </section>
 
