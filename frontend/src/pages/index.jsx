@@ -509,7 +509,7 @@ export default function HomePage() {
             }}>
               <div className="stats-row reveal-5" style={{ display: "flex", gap: 48, alignItems: "center", flex: 1, flexWrap: "wrap" }}>
                 {[
-                  { n: "3",   unit: "+", label: "Age Groups Served" },
+                  { n: "13",   unit: "+", label: "Age Groups Served" },
                   { n: "100", unit: "%", label: "Virtual & Telehealth" },
                   { n: "1:1", unit: "",  label: "Personalized Care" },
                   { n: "MD",  unit: "",  label: "Maryland Licensed" },
