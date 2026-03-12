@@ -1,5 +1,6 @@
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Mail, ArrowRight } from 'lucide-react';
+import { Phone, Mail, ArrowRight, Sparkles } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -100,7 +101,6 @@ const globalStyles = `
     border-radius: 50%;
     background: var(--sage);
     box-shadow: 0 0 0 2px rgba(92,126,106,0.25);
-    animation: spinSlow 0s, revealFade 0s;
     position: relative;
   }
   .telehealth-badge .dot::after {
@@ -116,7 +116,7 @@ const globalStyles = `
   .hero-headline {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 300;
-    font-size: clamp(3.2rem, 7vw, 6.8rem);
+    font-size: clamp(2.6rem, 4.5vw, 4.8rem);
     line-height: 1.0;
     letter-spacing: -0.01em;
     color: var(--text);
@@ -132,7 +132,7 @@ const globalStyles = `
     font-weight: 400;
   }
 
-  /* Shimmer text */
+  /* Shimmer text — all-blue range */
   .shimmer-text {
     background: linear-gradient(
       90deg,
@@ -168,11 +168,9 @@ const globalStyles = `
   }
   .btn-primary::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.15) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.2s;
+    opacity: 0; transition: opacity 0.2s;
   }
   .btn-primary:hover {
     transform: translateY(-2px) scale(1.02);
@@ -184,7 +182,7 @@ const globalStyles = `
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 15px 30px;
-    background: transparent;
+    background: rgba(255,255,255,0.5);
     color: var(--text);
     border: 1.5px solid var(--warm);
     border-radius: 999px;
@@ -194,7 +192,6 @@ const globalStyles = `
     cursor: pointer;
     transition: all 0.22s;
     backdrop-filter: blur(8px);
-    background: rgba(255,255,255,0.5);
   }
   .btn-secondary:hover {
     border-color: var(--sage);
@@ -203,7 +200,6 @@ const globalStyles = `
     background: rgba(255,255,255,0.8);
   }
 
-  /* Arrow icon rotation on hover */
   .btn-primary:hover .btn-arrow { transform: translateX(3px); }
   .btn-arrow { transition: transform 0.2s; }
 
@@ -222,7 +218,7 @@ const globalStyles = `
   /* Floating tags */
   .floating-tag {
     position: absolute;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.88);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255,255,255,0.9);
     border-radius: 16px;
@@ -234,52 +230,37 @@ const globalStyles = `
 
   /* Divider line */
   .scroll-line {
-    width: 1px;
-    height: 60px;
+    width: 1px; height: 60px;
     background: var(--warm);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
   .scroll-line::after {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: var(--sage);
     animation: scrollLine 2s ease-in-out infinite;
   }
 
   /* Stats row */
-  .stat-item {
-    display: flex; flex-direction: column; gap: 4px;
-  }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
   .stat-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1;
+    font-size: 2.4rem; font-weight: 300;
+    color: var(--text); line-height: 1;
   }
   .stat-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--text-3);
   }
 
   /* Image frame */
   .image-frame {
-    position: relative;
-    border-radius: 28px;
-    overflow: hidden;
+    position: relative; border-radius: 28px; overflow: hidden;
     aspect-ratio: 3/4;
     background: linear-gradient(145deg, var(--cream) 0%, var(--warm) 100%);
     box-shadow: 0 32px 80px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06);
   }
-  .image-frame img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
+  .image-frame img { width: 100%; height: 100%; object-fit: cover; }
 
   /* Services pills */
   .service-pill {
@@ -288,8 +269,7 @@ const globalStyles = `
     background: rgba(255,255,255,0.7);
     border: 1px solid var(--warm);
     border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 13px; font-weight: 500;
     color: var(--text-2);
     white-space: nowrap;
     transition: all 0.2s;
@@ -308,26 +288,20 @@ const globalStyles = `
   .section-eyebrow {
     display: flex; align-items: center; gap: 12px;
     font-family: 'Figtree', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--bark);
   }
   .section-eyebrow::before {
-    content: '';
-    width: 32px; height: 1px;
+    content: ''; width: 32px; height: 1px;
     background: var(--gold);
   }
 
   /* Noise texture overlay */
   .noise-overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.025;
-    pointer-events: none;
-    z-index: 9999;
+    opacity: 0.025; pointer-events: none; z-index: 9999;
   }
 
   /* Responsive helpers */
@@ -382,14 +356,13 @@ export default function HomePage() {
         <Navbar />
 
         {/* ═══════════════ HERO SECTION ═══════════════ */}
-        <section style={{ position: "relative", zIndex: 1, paddingTop: 100 }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "60px 32px 80px" }}>
+        <section style={{ position: "relative", zIndex: 1, paddingTop: 20 }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "24px 32px 80px" }}>
 
-            {/* Top row layout */}
             <div className="hero-layout" style={{ display: "flex", gap: 60, alignItems: "flex-start" }}>
 
               {/* ── LEFT COLUMN ── */}
-              <div style={{ flex: "1 1 55%", paddingTop: 20 }}>
+              <div style={{ flex: "1 1 60%", paddingTop: 20, minWidth: 0 }}>
 
                 {/* Badge */}
                 <div style={{ marginBottom: 28 }}>
@@ -422,8 +395,7 @@ export default function HomePage() {
                 {/* Body */}
                 <p className="reveal-3" style={{
                   fontSize: 15.5, lineHeight: 1.85, color: "var(--text-2)",
-                  maxWidth: 540, marginBottom: 40,
-                  fontWeight: 300,
+                  maxWidth: 540, marginBottom: 40, fontWeight: 300,
                 }}>
                   At Gigi Psychiatric Services, we offer comprehensive virtual mental
                   health care delivered with warmth and clinical excellence — from
@@ -472,23 +444,17 @@ export default function HomePage() {
               </div>
 
               {/* ── RIGHT COLUMN — Visual Card ── */}
-              <div style={{ flex: "1 1 42%", position: "relative", minHeight: 520 }} className="reveal-3">
+              <div style={{ flex: "1 1 36%", position: "relative", minHeight: 520, display: "flex", flexDirection: "column", alignItems: "center" }} className="reveal-3">
 
-                {/* Main image / illustration frame */}
-                <div className="image-frame" style={{ maxWidth: 420, margin: "0 auto" }}>
+                <div className="image-frame" style={{ maxWidth: 420, width: "100%", margin: "0 auto 0 0" }}>
                   <img src="/images/backdrop-for-hero.png" alt="Gigi Psychiatric Services" />
 
-                  {/* Gradient overlay on image */}
                   <div style={{
                     position: "absolute", inset: 0,
                     background: "linear-gradient(180deg, transparent 40%, rgba(28,24,20,0.35) 100%)",
                   }} />
 
-                  {/* Bottom text on image */}
-                  <div style={{
-                    position: "absolute", bottom: 24, left: 24, right: 24,
-                    color: "#fff",
-                  }}>
+                  <div style={{ position: "absolute", bottom: 24, left: 24, right: 24, color: "#fff" }}>
                     <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontStyle: "italic", fontWeight: 300, marginBottom: 4 }}>
                       "Your mental health<br />matters to us."
                     </div>
@@ -499,10 +465,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Floating tag — top left */}
-                <div className="floating-tag" style={{
-                  top: 40, left: -20,
-                  animation: "tagFloat 5s ease-in-out infinite",
-                }}>
+                <div className="floating-tag" style={{ top: 40, left: -20, animation: "tagFloat 5s ease-in-out infinite" }}>
                   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 6 }}>
                     Accepting New Patients
                   </div>
@@ -513,11 +476,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Floating tag — bottom right */}
-                <div className="floating-tag" style={{
-                  bottom: 60, right: -24,
-                  animation: "tagFloat 6s ease-in-out 2s infinite",
-                  maxWidth: 200,
-                }}>
+                <div className="floating-tag" style={{ bottom: 60, right: -24, animation: "tagFloat 6s ease-in-out 2s infinite", maxWidth: 200 }}>
                   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-3)", marginBottom: 6 }}>
                     Telehealth
                   </div>
@@ -526,41 +485,34 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Decorative ring */}
+                {/* Decorative rings */}
                 <div style={{
                   position: "absolute", bottom: -30, right: -30,
-                  width: 160, height: 160,
-                  borderRadius: "50%",
+                  width: 160, height: 160, borderRadius: "50%",
                   border: "1px solid rgba(196,168,130,0.3)",
-                  zIndex: -1,
-                  pointerEvents: "none",
+                  zIndex: -1, pointerEvents: "none",
                 }} />
                 <div style={{
                   position: "absolute", bottom: -50, right: -50,
-                  width: 220, height: 220,
-                  borderRadius: "50%",
+                  width: 220, height: 220, borderRadius: "50%",
                   border: "1px solid rgba(196,168,130,0.15)",
-                  zIndex: -1,
-                  pointerEvents: "none",
+                  zIndex: -1, pointerEvents: "none",
                 }} />
               </div>
             </div>
 
             {/* ── Stats Row ── */}
             <div style={{
-              marginTop: 64,
-              paddingTop: 48,
+              marginTop: 64, paddingTop: 48,
               borderTop: "1px solid var(--warm)",
-              display: "flex",
-              alignItems: "center",
-              gap: 0,
+              display: "flex", alignItems: "center", gap: 0,
             }}>
               <div className="stats-row reveal-5" style={{ display: "flex", gap: 48, alignItems: "center", flex: 1, flexWrap: "wrap" }}>
                 {[
-                  { n: "3", unit: "+", label: "Age Groups Served" },
+                  { n: "3",   unit: "+", label: "Age Groups Served" },
                   { n: "100", unit: "%", label: "Virtual & Telehealth" },
-                  { n: "1:1", unit: "", label: "Personalized Care" },
-                  { n: "MD", unit: "", label: "Maryland Licensed" },
+                  { n: "1:1", unit: "",  label: "Personalized Care" },
+                  { n: "MD",  unit: "",  label: "Maryland Licensed" },
                 ].map((s, i) => (
                   <div key={i} className="stat-item">
                     <div className="stat-number">
@@ -584,25 +536,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════════════ SERVICES MARQUEE BAND ═══════════════ */}
-        <section style={{
-          position: "relative",
-          zIndex: 1,
-          background: "var(--sage-dk)",
-          overflow: "hidden",
-          padding: "0",
-        }}>
+        {/* ═══════════════ SERVICES BAND ═══════════════ */}
+        <section style={{ position: "relative", zIndex: 1, background: "var(--sage-dk)", overflow: "hidden", padding: "0" }}>
           {/* Top slant */}
           <div style={{
-            position: "absolute", top: -1, left: 0, right: 0,
-            height: 40,
+            position: "absolute", top: -1, left: 0, right: 0, height: 40,
             background: "var(--ivory)",
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 0)",
           }} />
           {/* Bottom slant */}
           <div style={{
-            position: "absolute", bottom: -1, left: 0, right: 0,
-            height: 40,
+            position: "absolute", bottom: -1, left: 0, right: 0, height: 40,
             background: "var(--ivory)",
             clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
           }} />
@@ -610,7 +554,6 @@ export default function HomePage() {
           <div style={{ padding: "56px 32px 56px", maxWidth: 1280, margin: "0 auto" }}>
             <div style={{ marginBottom: 24 }}>
               <span className="section-eyebrow" style={{ color: "rgba(255,255,255,0.5)" }}>
-                <span style={{ background: "var(--gold)" }} />
                 Our Services
               </span>
             </div>
@@ -629,7 +572,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════════════ BRIEF ABOUT / CTA BAND ═══════════════ */}
+        {/* ═══════════════ ABOUT / CTA BAND ═══════════════ */}
         <section style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 32px" }}>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 64, alignItems: "center" }}>
@@ -643,10 +586,8 @@ export default function HomePage() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 300,
                   fontSize: "clamp(2rem, 4vw, 3.4rem)",
-                  lineHeight: 1.15,
-                  color: "var(--text)",
-                  marginBottom: 20,
-                  letterSpacing: "-0.01em",
+                  lineHeight: 1.15, color: "var(--text)",
+                  marginBottom: 20, letterSpacing: "-0.01em",
                 }}>
                   A practice built on<br />
                   <em style={{ color: "var(--sage)", fontStyle: "italic" }}>empathy & expertise</em>
@@ -662,40 +603,29 @@ export default function HomePage() {
                 </button>
               </div>
 
-              {/* Right — decorative quote card */}
+              {/* Right — quote card */}
               <div style={{ flex: "1 1 40%", minWidth: 260 }}>
                 <div style={{
                   background: "linear-gradient(145deg, var(--cream) 0%, rgba(232,221,208,0.5) 100%)",
                   border: "1px solid var(--warm)",
-                  borderRadius: 28,
-                  padding: "40px 36px",
-                  position: "relative",
-                  overflow: "hidden",
+                  borderRadius: 28, padding: "40px 36px",
+                  position: "relative", overflow: "hidden",
                 }}>
-                  {/* Large decorative quote mark */}
+                  {/* Decorative quote mark */}
                   <div style={{
-                    position: "absolute",
-                    top: -10,
-                    left: 24,
+                    position: "absolute", top: -10, left: 24,
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 140,
-                    lineHeight: 1,
+                    fontSize: 140, lineHeight: 1,
                     color: "rgba(196,168,130,0.2)",
-                    fontStyle: "italic",
-                    pointerEvents: "none",
-                    userSelect: "none",
+                    fontStyle: "italic", pointerEvents: "none", userSelect: "none",
                   }}>
                     "
                   </div>
                   <p style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 22,
-                    fontStyle: "italic",
-                    fontWeight: 400,
-                    lineHeight: 1.6,
-                    color: "var(--text)",
-                    marginBottom: 20,
-                    position: "relative",
+                    fontSize: 22, fontStyle: "italic", fontWeight: 400,
+                    lineHeight: 1.6, color: "var(--text)",
+                    marginBottom: 20, position: "relative",
                   }}>
                     Mental health is not a destination, but a process. It's about
                     how you drive, not where you're going.
@@ -710,8 +640,7 @@ export default function HomePage() {
                   {/* Corner accent */}
                   <div style={{
                     position: "absolute", bottom: -20, right: -20,
-                    width: 100, height: 100,
-                    borderRadius: "50%",
+                    width: 100, height: 100, borderRadius: "50%",
                     background: "radial-gradient(circle, rgba(92,126,106,0.1) 0%, transparent 70%)",
                   }} />
                 </div>
