@@ -554,8 +554,8 @@ export default function ServicesPage() {
         <Navbar />
 
         {/* ═══ HERO ═══ */}
-        <section style={{ position: "relative", zIndex: 1, paddingTop: 100 }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "60px 32px 80px" }}>
+        <section style={{ position: "relative", zIndex: 1, paddingTop: 40 }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "10px 32px 80px" }}>
             <div className="svc-r1" style={{ marginBottom: 16 }}>
               <span className="section-eyebrow">What We Offer</span>
             </div>
