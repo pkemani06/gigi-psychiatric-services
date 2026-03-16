@@ -195,7 +195,7 @@ function getWeekDays(offset = 0) {
   const day = today.getDay();
   const monday = new Date(today);
   monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1) + offset * 7);
-  return Array.from({ length: 5 }, (_, i) => {
+  return Array.from({ length: 6 }, (_, i) => {
     const d = new Date(monday);
     d.setDate(monday.getDate() + i);
     return d;
@@ -203,9 +203,9 @@ function getWeekDays(offset = 0) {
 }
 function generateSlots() {
   const slots = [];
-  for (let h = 9; h < 17; h++) {
+  for (let h = 9; h < 20; h++) {
     slots.push(`${String(h).padStart(2,'0')}:00`);
-    slots.push(`${String(h).padStart(2,'0')}:30`);
+    if (!(h === 19)) slots.push(`${String(h).padStart(2,'0')}:30`);
   }
   return slots;
 }
@@ -298,7 +298,7 @@ export default function BookingPage() {
               <em className="shimmer-text" style={{ fontStyle:"italic", fontWeight:400 }}>appointment</em>
             </h1>
             <p className="bk-r3" style={{ fontFamily:"'Figtree', sans-serif", fontSize:16, fontWeight:300, color:"var(--text-2)", lineHeight:1.8, maxWidth:500 }}>
-              Monday – Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM &nbsp;·&nbsp; 30-minute virtual sessions
+              Monday – Saturday &nbsp;·&nbsp; 9:00 AM – 7:30 PM &nbsp;·&nbsp; 30-minute virtual sessions
             </p>
           </div>
         </section>
@@ -326,7 +326,7 @@ export default function BookingPage() {
                 <ChevronLeft size={16}/> Previous
               </button>
               <p style={{ fontFamily:"'Figtree', sans-serif", fontSize:14, fontWeight:600, color:"var(--text-2)", letterSpacing:"0.02em" }}>
-                {formatDateShort(weekDays[0])} — {formatDateShort(weekDays[4])}
+                {formatDateShort(weekDays[0])} — {formatDateShort(weekDays[5])}
               </p>
               <button className="week-btn" onClick={() => { setWeekOffset(w=>w+1); setSelectedDay(null); }}>
                 Next <ChevronRight size={16}/>
@@ -334,7 +334,7 @@ export default function BookingPage() {
             </div>
 
             {/* Day tabs */}
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:12, marginBottom:28 }}>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(6,1fr)", gap:12, marginBottom:28 }}>
               {weekDays.map((day) => {
                 const key = dateKey(day);
                 const bookedCount = booked[key]?.length || 0;
@@ -389,7 +389,7 @@ export default function BookingPage() {
               <div style={{ background:"linear-gradient(145deg, var(--cream) 0%, rgba(242,237,229,0.5) 100%)", border:"1px solid var(--warm)", borderRadius:28, padding:"72px 44px", textAlign:"center", boxShadow:"0 16px 48px rgba(0,0,0,0.06)" }}>
                 <div style={{ fontSize:52, marginBottom:20 }}>📅</div>
                 <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:24, fontWeight:400, fontStyle:"italic", color:"var(--text)", marginBottom:8 }}>Select a day to see available times</p>
-                <p style={{ fontFamily:"'Figtree', sans-serif", fontSize:14, fontWeight:300, color:"var(--text-3)", margin:0 }}>30-minute virtual sessions available Mon–Fri</p>
+                <p style={{ fontFamily:"'Figtree', sans-serif", fontSize:14, fontWeight:300, color:"var(--text-3)", margin:0 }}>30-minute virtual sessions available Mon–Sat</p>
               </div>
             )}
           </div>

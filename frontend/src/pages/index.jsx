@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const businessInfo = {
-  phone: "301-886-5868",
+  phone: "301-886-5868 / 301-921-5810",
   email: "gigipsychiatricservices@gmail.com",
 };
 
