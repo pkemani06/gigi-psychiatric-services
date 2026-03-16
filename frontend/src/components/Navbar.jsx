@@ -5,7 +5,9 @@ import { Menu, X, Phone } from 'lucide-react';
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'What We Treat', href: '/what-we-treat' },
   { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -71,7 +73,7 @@ const navStyles = `
   .nav-link-btn {
     position: relative;
     font-family: 'Figtree', sans-serif;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
     background: none;
     border: none;
@@ -79,6 +81,7 @@ const navStyles = `
     padding: 4px 0;
     letter-spacing: 0.01em;
     transition: color 0.2s;
+    white-space: nowrap;
   }
   .nav-link-btn::after {
     content: '';
@@ -111,6 +114,7 @@ const navStyles = `
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
     box-shadow: 0 4px 16px rgba(92,126,106,0.25), 0 1px 4px rgba(92,126,106,0.12);
+    white-space: nowrap;
   }
   .nav-book-btn:hover {
     background: #3d5c4a;
@@ -149,6 +153,16 @@ const navStyles = `
     background: #c4a882;
     box-shadow: 0 0 0 2px rgba(196,168,130,0.3);
     flex-shrink: 0;
+  }
+
+  .nav-mobile-section-label {
+    font-family: 'Figtree', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9c9088;
+    padding: 8px 16px 4px;
   }
 `;
 
@@ -220,7 +234,7 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76 }}>
 
             {/* Logo */}
-            <button onClick={() => go('/')} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+            <button onClick={() => go('/')} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'none', border: 'none', cursor: 'pointer', padding: 0, flexShrink: 0 }}>
               <div style={{
                 width: 44, height: 44,
                 borderRadius: '50%',
@@ -268,7 +282,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Nav */}
-            <nav style={{ display: 'none', alignItems: 'center', gap: 36 }} className="desktop-nav">
+            <nav style={{ display: 'none', alignItems: 'center', gap: 28 }} className="desktop-nav">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.href;
                 return (
@@ -293,6 +307,7 @@ export default function Navbar() {
                 color: '#8a7060',
                 textDecoration: 'none',
                 transition: 'color 0.18s',
+                flexShrink: 0,
               }}
                 onMouseEnter={e => e.currentTarget.style.color = '#5c7e6a'}
                 onMouseLeave={e => e.currentTarget.style.color = '#8a7060'}
@@ -334,8 +349,9 @@ export default function Navbar() {
               paddingBottom: 20,
               borderTop: '1px solid rgba(232,221,208,0.6)',
             }}>
+              {/* Main pages */}
               <div style={{ paddingTop: 12, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {navLinks.map((link) => {
+                {navLinks.filter(l => !['What We Treat', 'Blog'].includes(l.label)).map((link) => {
                   const isActive = location.pathname === link.href;
                   return (
                     <button
@@ -355,7 +371,33 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* Mobile divider */}
+              {/* Explore section */}
+              <div style={{ height: 1, background: 'rgba(232,221,208,0.8)', margin: '10px 0 4px' }} />
+              <div className="nav-mobile-section-label">Explore</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {navLinks.filter(l => ['What We Treat', 'Blog'].includes(l.label)).map((link) => {
+                  const isActive = location.pathname === link.href;
+                  return (
+                    <button
+                      key={link.href}
+                      onClick={() => go(link.href)}
+                      className="nav-mobile-link"
+                      style={{
+                        color: isActive ? '#5c7e6a' : '#5c5248',
+                        background: isActive ? 'rgba(92,126,106,0.08)' : 'transparent',
+                        display: 'flex', alignItems: 'center', gap: 10,
+                      }}
+                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(92,126,106,0.05)'; e.currentTarget.style.color = '#5c7e6a'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = isActive ? 'rgba(92,126,106,0.08)' : 'transparent'; e.currentTarget.style.color = isActive ? '#5c7e6a' : '#5c5248'; }}
+                    >
+                      <span style={{ fontSize: 16 }}>{link.label === 'Blog' ? '✍️' : '🌿'}</span>
+                      {link.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Mobile divider + CTA */}
               <div style={{ height: 1, background: 'rgba(232,221,208,0.8)', margin: '12px 0' }} />
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 4px' }}>

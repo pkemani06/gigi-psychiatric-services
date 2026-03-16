@@ -573,7 +573,7 @@ export default function ServicesPage() {
         {/* ═══ INSURANCE TICKER ═══ */}
         <section style={{ position: "relative", zIndex: 1, marginBottom: 56 }}>
           <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px 16px" }}>
-            <span className="section-eyebrow">Insurances Accepted</span>
+            <span className="section-eyebrow" style={{ fontSize: "18px" }}>Insurances Accepted</span>
           </div>
           <div style={{ background: "linear-gradient(135deg, var(--sage-dk) 0%, #4a7060 50%, var(--sage) 100%)", overflow: "hidden", padding: "18px 0", position: "relative", boxShadow: "0 8px 32px rgba(61,92,74,0.28), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.1)" }}>
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(90deg, #3d5c4a, transparent)", zIndex: 2, pointerEvents: "none" }} />
