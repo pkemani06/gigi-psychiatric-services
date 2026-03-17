@@ -187,6 +187,17 @@ const pageStyles = `
     border-color: var(--sage); color: var(--sage);
     background: rgba(92,126,106,0.04);
   }
+  .page-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/images/backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.1;
+    pointer-events: none;
+  }
 `;
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -275,8 +286,8 @@ export default function BookingPage() {
     <>
       <style>{pageStyles}</style>
       <div className="noise-overlay" aria-hidden="true" />
-
-      <div style={{ minHeight: "100vh", background: "var(--ivory)", position: "relative" }}>
+      <div className="page-backdrop" aria-hidden="true" /> 
+      <div style={{ minHeight: "100vh", background: "transparent", position: "relative" }}>
 
         {/* Background orbs */}
         <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>

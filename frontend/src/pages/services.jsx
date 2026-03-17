@@ -297,6 +297,17 @@ const pageStyles = `
     .spec-grid { grid-template-columns: 1fr !important; }
     .condition-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
+  .page-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/images/backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.1;
+    pointer-events: none;
+  }
 `;
 
 const services = [
@@ -452,6 +463,7 @@ export default function ServicesPage() {
     <>
       <style>{pageStyles}</style>
       <div className="noise-overlay" aria-hidden="true" />
+      <div className="page-backdrop" aria-hidden="true" />
 
       {/* ══════════ MODAL ══════════ */}
       {activeModal !== null && (
@@ -542,7 +554,7 @@ export default function ServicesPage() {
         </div>
       )}
 
-      <div style={{ minHeight: "100vh", background: "var(--ivory)", position: "relative" }}>
+      <div style={{ minHeight: "100vh", background: "transparent", position: "relative" }}>
 
         {/* Orbs */}
         <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>

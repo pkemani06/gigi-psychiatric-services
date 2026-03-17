@@ -181,6 +181,17 @@ const pageStyles = `
   .anim-r2 { animation: r2 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
   .anim-r3 { animation: r3 0.8s ease 0.4s both; }
   .anim-r4 { animation: r3 0.8s ease 0.55s both; }
+  .page-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/images/backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.1;
+    pointer-events: none;
+  }
 `;
 
 const article = {
@@ -252,13 +263,13 @@ export default function BlogPage() {
     <>
       <style>{pageStyles}</style>
       <div className="noise-overlay" aria-hidden="true" />
-
+      <div className="page-backdrop" aria-hidden="true" />
       {reading && (
         <div className="reading-progress" style={{ width: `${scrollProgress}%` }} />
       )}
 
       <div
-        style={{ minHeight: '100vh', background: 'var(--ivory)', position: 'relative', overflowY: reading ? 'auto' : 'unset' }}
+        style={{ minHeight: '100vh', background: 'transparent', position: 'relative', overflowY: reading ? 'auto' : 'unset' }}
         onScroll={reading ? handleScroll : undefined}
       >
         {/* Background orbs */}

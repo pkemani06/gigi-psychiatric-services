@@ -313,6 +313,17 @@ const globalStyles = `
     .hero-headline { font-size: clamp(2.6rem, 10vw, 3.8rem) !important; }
     .services-pills { gap: 8px !important; }
   }
+  .page-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/images/backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.1;
+    pointer-events: none;
+  }
 `;
 
 const services = [
@@ -331,8 +342,8 @@ export default function HomePage() {
     <>
       <style>{globalStyles}</style>
       <div className="noise-overlay" aria-hidden="true" />
-
-      <div style={{ minHeight: "100vh", background: "var(--ivory)", position: "relative" }}>
+      <div className="page-backdrop" aria-hidden="true" /> 
+      <div style={{ minHeight: "100vh", background: "transparent", position: "relative" }}>
 
         {/* ── Atmospheric Background Orbs ── */}
         <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
