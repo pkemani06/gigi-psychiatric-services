@@ -358,7 +358,7 @@ export default function WhatWeTreatPage() {
                 <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(92,126,106,0.1)', border: '1.5px dashed rgba(92,126,106,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
                   {conditions[activeModal].icon}
                 </div>
-                <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-3)' }}>Add image</span>
+                <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-3)' }}></span>
                 <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 9, color: 'rgba(156,144,136,0.7)' }}>{conditions[activeModal].imagePath}</span>
               </div>
             </div>
@@ -460,9 +460,6 @@ export default function WhatWeTreatPage() {
                       style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
                       onError={e => { e.target.style.display = 'none'; }}
                     />
-                    <div className="placeholder-icon-circle">{condition.icon}</div>
-                    <span className="placeholder-label">Add image</span>
-                    <span className="placeholder-path">{condition.imagePath}</span>
                   </div>
 
                   {/* Card content */}
