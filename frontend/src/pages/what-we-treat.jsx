@@ -222,7 +222,7 @@ const pageStyles = `
 const conditions = [
   {
     title: "Insomnia",
-    icon: "🌙",
+    icon: "",
     imagePath: "/images/conditions/insomnia.jpg",
     tag: "Sleep",
     shortDesc: "Difficulty falling or staying asleep that affects daily functioning and quality of life.",
@@ -231,7 +231,7 @@ const conditions = [
   },
   {
     title: "Anxiety",
-    icon: "🌊",
+    icon: "",
     imagePath: "/images/conditions/anxiety.jpg",
     tag: "Mood",
     shortDesc: "Persistent worry, fear, or nervousness that interferes with everyday activities.",
@@ -240,7 +240,7 @@ const conditions = [
   },
   {
     title: "Depression",
-    icon: "🌧️",
+    icon: "",
     imagePath: "/images/conditions/depression.jpg",
     tag: "Mood",
     shortDesc: "Persistent sadness, loss of interest, and emotional heaviness that affects all areas of life.",
@@ -249,7 +249,7 @@ const conditions = [
   },
   {
     title: "Schizophrenia",
-    icon: "🔮",
+    icon: "",
     imagePath: "/images/conditions/schizophrenia.jpg",
     tag: "Psychotic",
     shortDesc: "A complex condition affecting how a person thinks, feels, and perceives reality.",
@@ -258,7 +258,7 @@ const conditions = [
   },
   {
     title: "ADHD",
-    icon: "⚡",
+    icon: "",
     imagePath: "/images/conditions/adhd.jpg",
     tag: "Neurodevelopmental",
     shortDesc: "Difficulty with attention, impulse control, and hyperactivity across all age groups.",
@@ -267,7 +267,7 @@ const conditions = [
   },
   {
     title: "Post Traumatic Stress Disorder",
-    icon: "🛡️",
+    icon: "",
     imagePath: "/images/conditions/ptsd.jpg",
     tag: "Trauma",
     shortDesc: "Lasting emotional and psychological effects following exposure to a traumatic event.",
@@ -276,7 +276,7 @@ const conditions = [
   },
   {
     title: "Mood Disorder",
-    icon: "🔄",
+    icon: "",
     imagePath: "/images/conditions/mood-disorder.jpg",
     tag: "Mood",
     shortDesc: "Emotional dysregulation that causes significant shifts in mood, energy, and behavior.",
@@ -285,7 +285,7 @@ const conditions = [
   },
   {
     title: "Sleep Disorder",
-    icon: "😴",
+    icon: "",
     imagePath: "/images/conditions/sleep-disorder.jpg",
     tag: "Sleep",
     shortDesc: "Disruptions to normal sleep patterns that impair health, mood, and daily performance.",
@@ -294,7 +294,7 @@ const conditions = [
   },
   {
     title: "Borderline Personality Disorder",
-    icon: "💫",
+    icon: "",
     imagePath: "/images/conditions/bpd.jpg",
     tag: "Personality",
     shortDesc: "Intense emotional experiences, unstable relationships, and a fluctuating sense of self.",
@@ -303,7 +303,7 @@ const conditions = [
   },
   {
     title: "Psychosis",
-    icon: "🌀",
+    icon: "",
     imagePath: "/images/conditions/psychosis.jpg",
     tag: "Psychotic",
     shortDesc: "A break from reality involving hallucinations, delusions, or disorganized thinking.",
@@ -312,7 +312,7 @@ const conditions = [
   },
   {
     title: "Anger Management",
-    icon: "🔥",
+    icon: "",
     imagePath: "/images/conditions/anger.jpg",
     tag: "Behavioral",
     shortDesc: "Difficulty controlling anger responses that affect relationships and daily life.",

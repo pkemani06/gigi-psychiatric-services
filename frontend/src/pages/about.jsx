@@ -287,7 +287,7 @@ export default function AboutPage() {
                       fontSize: 24, fontWeight: 500,
                       color: "#fff", margin: "0 0 4px", lineHeight: 1.2,
                     }}>
-                      Giesel Kemani APRN, MSC, PMHNP-BC
+                      Giesel Kemani APRN, MSN, PMHNP-BC
                     </p>
                   </div>
                   <div style={{
@@ -450,7 +450,7 @@ export default function AboutPage() {
                       fontSize: 20, fontWeight: 500,
                       color: "var(--text)", margin: 0,
                     }}>
-                      Giesel Kemani APRN, MSC, PMHNP-BC
+                      Giesel Kemani APRN, MSN, PMHNP-BC
                     </p>
                     <p style={{
                       fontFamily: "'Figtree', sans-serif",
@@ -492,7 +492,7 @@ export default function AboutPage() {
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12 }}>
               <div style={{ width: 32, height: 1, background: "var(--gold)" }} />
               <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-                Giesel Kemani APRN, PMHNP-BC
+                Giesel Kemani MSN, APRN, PMHNP-BC
               </span>
               <div style={{ width: 32, height: 1, background: "var(--gold)" }} />
             </div>

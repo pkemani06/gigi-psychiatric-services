@@ -427,12 +427,7 @@ const services = [
   },
 ];
 
-const conditions = [
-  { title: "Anxiety", tag: "We Treat", icon: "🌊", image: "/images/anxiety.png", description: "Generalized anxiety, panic disorder, social anxiety & more" },
-  { title: "Depression", tag: "We Treat", icon: "🌧️", image: "/images/depression.png", description: "Major depressive disorder, persistent depressive disorder & more" },
-  { title: "ADHD", tag: "We Treat", icon: "⚡", image: "/images/adhd.png", description: "Attention deficit hyperactivity disorder across all age groups" },
-  { title: "Bipolar Disorder", tag: "We Treat", icon: "🔄", image: "/images/bipolar.png", description: "Bipolar I, Bipolar II, and cyclothymic disorder" },
-];
+
 
 const specializations = [
   "Insomnia", "Anxiety", "Depression", "Schizophrenia", "ADHD",
@@ -651,41 +646,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ═══ CONDITIONS IMAGE GRID ═══ */}
-        <section style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "60px 32px 96px" }}>
-            <div style={{ marginBottom: 48 }}>
-              <div style={{ marginBottom: 14 }}><span className="section-eyebrow">Conditions We Treat</span></div>
-              <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: "clamp(2rem, 4vw, 3.6rem)", lineHeight: 1.1, letterSpacing: "-0.01em", color: "var(--text)", margin: 0 }}>
-                  Focused care for the <em style={{ fontStyle: "italic", color: "var(--sage)", fontWeight: 400 }}>conditions<br />that matter most</em>
-                </h2>
-                <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, fontWeight: 300, color: "var(--text-3)", lineHeight: 1.75, maxWidth: 340, margin: 0 }}>
-                  Evidence-based treatment for these and many more mental health conditions — delivered virtually across Maryland.
-                </p>
-              </div>
-            </div>
-            <div className="condition-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
-              {conditions.map((condition, i) => (
-                <div key={i} className="condition-card">
-                  <img src={condition.image} alt={condition.title} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
-                  <div className="img-placeholder" style={{ display: 'none', position: 'absolute', inset: 0 }}>
-                    <div className="placeholder-icon">{condition.icon}</div>
-                    <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 11, color: "var(--text-3)", letterSpacing: "0.08em", textTransform: 'uppercase' }}>Add image</span>
-                    <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 10, color: "var(--text-3)" }}>/images/{condition.title.toLowerCase().replace(' ', '')}.png</span>
-                  </div>
-                  <div className="card-overlay" />
-                  <div className="card-label">
-                    <div className="card-tag"><span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--gold)", flexShrink: 0 }} />{condition.tag}</div>
-                    <p className="card-title">{condition.title}</p>
-                    <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.5, margin: "6px 0 0" }}>{condition.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+       
         {/* ═══ SPECIALIZATIONS ═══ */}
         <section className="dark-band" style={{ position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: 1280, margin: "0 auto", padding: "72px 32px" }}>
