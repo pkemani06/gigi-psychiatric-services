@@ -166,7 +166,7 @@ const pageStyles = `
 `;
 
 const businessInfo = {
-  phone: "301-886-5868",
+  phone: "301-886-5868 or 301-921-5810",
   email: "gigipsychiatricservices@gmail.com",
   address: "18310 Montgomery Village Ave, Gaithersburg, MD 20879",
   hours: "Virtual Visits Only · Flexible Scheduling",
