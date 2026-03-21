@@ -12,7 +12,9 @@ const info = {
 const footerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'What We Treat', href: '/what-we-treat' },
   { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -185,11 +187,11 @@ export default function Footer() {
             </button>
           </div>
 
-          {/* ── Main 3-col grid ── */}
+          {/* ── Main 4-col grid ── */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '40px 56px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '40px 48px',
             marginBottom: 56,
           }}>
 
@@ -253,7 +255,7 @@ export default function Footer() {
                 Navigate
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {footerLinks.map(({ label, href }) => (
+                {footerLinks.slice(0, 3).map(({ label, href }) => (
                   <button key={href} onClick={() => navigate(href)} className="footer-link-btn">
                     {label}
                     <ArrowUpRight size={12} className="arrow-icon" />
@@ -262,7 +264,30 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Col 3 — Contact */}
+            {/* Col 3 — Explore Links */}
+            <div>
+              <h4 style={{
+                fontFamily: "'Figtree', sans-serif",
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: '#8a7060',
+                marginBottom: 20,
+              }}>
+                Explore
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {footerLinks.slice(3).map(({ label, href }) => (
+                  <button key={href} onClick={() => navigate(href)} className="footer-link-btn">
+                    {label}
+                    <ArrowUpRight size={12} className="arrow-icon" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Col 4 — Contact */}
             <div>
               <h4 style={{
                 fontFamily: "'Figtree', sans-serif",
