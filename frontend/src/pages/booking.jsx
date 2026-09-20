@@ -212,11 +212,17 @@ function getWeekDays(offset = 0) {
     return d;
   });
 }
-function generateSlots() {
+// Mon/Tue/Wed are evening-only, last appointment at 9:30 PM; Thu–Sat keep daytime
+// hours (9:00 AM – 7:30 PM). Ranges are inclusive of the last START time; each
+// session runs 30 minutes, so the 21:30 start wraps up at 10:00 PM.
+const EVENING_DAYS = [1, 2, 3];
+function slotsForDay(date) {
+  const evening = EVENING_DAYS.includes(date.getDay());
+  const firstStart = evening ? 17 * 60 + 30 : 9 * 60;
+  const lastStart  = evening ? 21 * 60 + 30 : 19 * 60;
   const slots = [];
-  for (let h = 9; h < 20; h++) {
-    slots.push(`${String(h).padStart(2,'0')}:00`);
-    if (!(h === 19)) slots.push(`${String(h).padStart(2,'0')}:30`);
+  for (let m = firstStart; m <= lastStart; m += 30) {
+    slots.push(`${String(Math.floor(m / 60)).padStart(2,'0')}:${String(m % 60).padStart(2,'0')}`);
   }
   return slots;
 }
@@ -233,8 +239,6 @@ function formatDateLabel(d) {
 function formatDateShort(d) {
   return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 }
-
-const TIME_SLOTS = generateSlots();
 
 export default function BookingPage() {
   const [weekOffset, setWeekOffset] = useState(0);
@@ -309,7 +313,7 @@ export default function BookingPage() {
               <em className="shimmer-text" style={{ fontStyle:"italic", fontWeight:400 }}>appointment</em>
             </h1>
             <p className="bk-r3" style={{ fontFamily:"'Figtree', sans-serif", fontSize:16, fontWeight:300, color:"var(--text-2)", lineHeight:1.8, maxWidth:500 }}>
-              Monday – Saturday &nbsp;·&nbsp; 9:00 AM – 7:30 PM &nbsp;·&nbsp; 30-minute virtual sessions
+              Mon – Wed &nbsp;·&nbsp; 5:30 – 9:30 PM appointments &nbsp;&nbsp;|&nbsp;&nbsp; Thu – Sat &nbsp;·&nbsp; 9:00 AM – 7:30 PM &nbsp;·&nbsp; 30-minute virtual sessions
             </p>
           </div>
         </section>
@@ -349,7 +353,7 @@ export default function BookingPage() {
               {weekDays.map((day) => {
                 const key = dateKey(day);
                 const bookedCount = booked[key]?.length || 0;
-                const available = TIME_SLOTS.length - bookedCount;
+                const available = slotsForDay(day).length - bookedCount;
                 const past = isPast(day);
                 const isSelected = selectedDay && dateKey(selectedDay) === key;
                 return (
@@ -386,7 +390,7 @@ export default function BookingPage() {
                   </div>
                 </div>
                 <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(90px, 1fr))", gap:10 }}>
-                  {TIME_SLOTS.map((time) => {
+                  {slotsForDay(selectedDay).map((time) => {
                     const taken = isBooked(selectedDay, time);
                     return (
                       <button key={time} disabled={taken} onClick={() => openModal(selectedDay, time)} className="time-slot">
@@ -400,7 +404,7 @@ export default function BookingPage() {
               <div style={{ background:"linear-gradient(145deg, var(--cream) 0%, rgba(242,237,229,0.5) 100%)", border:"1px solid var(--warm)", borderRadius:28, padding:"72px 44px", textAlign:"center", boxShadow:"0 16px 48px rgba(0,0,0,0.06)" }}>
                 <div style={{ fontSize:52, marginBottom:20 }}>📅</div>
                 <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:24, fontWeight:400, fontStyle:"italic", color:"var(--text)", marginBottom:8 }}>Select a day to see available times</p>
-                <p style={{ fontFamily:"'Figtree', sans-serif", fontSize:14, fontWeight:300, color:"var(--text-3)", margin:0 }}>30-minute virtual sessions available Mon–Sat</p>
+                <p style={{ fontFamily:"'Figtree', sans-serif", fontSize:14, fontWeight:300, color:"var(--text-3)", margin:0 }}>30-minute virtual sessions · evenings Mon–Wed, daytime Thu–Sat</p>
               </div>
             )}
           </div>
