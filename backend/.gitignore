@@ -27,4 +27,4 @@ dist/
 build/
 
 # Misc
-.cache/
+.cache/.env

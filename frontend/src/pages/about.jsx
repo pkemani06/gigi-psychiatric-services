@@ -266,7 +266,7 @@ export default function AboutPage() {
                 <div style={{
                   borderRadius: 28,
                   overflow: "hidden",
-                  height: 520,
+                  aspectRatio: "1122 / 1402",
                   position: "relative",
                   background: "linear-gradient(145deg, var(--cream) 0%, var(--warm) 100%)",
                   boxShadow: "0 32px 80px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06)",
@@ -275,7 +275,7 @@ export default function AboutPage() {
                   <img
                     src="/images/provider-photo.png"
                     alt="Giesel Kemani, PMHNP-BC"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 10%", display: "block" }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
                   />
                   <div style={{
                     position: "absolute", inset: 0,
